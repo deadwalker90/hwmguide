@@ -29,11 +29,11 @@ AppAsset::register($this);
                 'brandLabel' => 'My Company',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
-                    'class' => 'navbar-inverse navbar-fixed-top',
+                    'class' => 'navbar-static-top navigation',
                 ],
             ]);
             echo Nav::widget([
-                'options' => ['class' => 'navbar-nav navbar-right'],
+                'options' => ['class' => 'nav-pills navbar-right'],
                 'items' => [
                     ['label' => 'Home', 'url' => ['/site/index']],
                     ['label' => 'About', 'url' => ['/site/about']],
@@ -48,11 +48,18 @@ AppAsset::register($this);
             NavBar::end();
         ?>
 
-        <div class="container">
-            <?= Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]) ?>
-            <?= $content ?>
+        <div class="content">
+            <div class="sidebars pull-left">
+                <? require(__DIR__ . '/sidebars.php') ?>
+            </div>
+            <div class="center pull-right">
+                <?= Breadcrumbs::widget([
+                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    'homeLink' => ['label' => 'HWMGuide', 'url' => ['site/index']]
+                ]) ?>
+                <?= $content ?>
+            </div>
+
         </div>
     </div>
 
